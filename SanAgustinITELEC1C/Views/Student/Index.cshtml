@@ -4,25 +4,38 @@
 @{
 }
 
-<h1>Student Details</h1>
-<table>
+@model IEnumerable<Student>;
+<div>Student List</div>
+<a asp-action="AddStudent" class="btn btn-primary">Add Student</a>
+<table class="table table-dark">
+
+    <tr>
+        <th colspan="8">Student</th>
+    </tr>
+
     <tr>
         <td>Name</td>
-        <td>@ViewBag.Student.StudentName</td>
-    </tr>
-    <tr>
-        <td>Date Enrolled</td>
-        <td>@ViewBag.Student.DateEnrolled</td>
-    </tr>
-    <tr>
         <td>Course</td>
-        <td>@ViewBag.Student.Course</td>
-    </tr>
-    <tr>
+        <td>Admission Date</td>
         <td>Email</td>
-        <td>@ViewBag.Student.Email</td>
+        <td>GPA</td>
+        <td>Details</td>
+        <td>Update</td>
+        <td>Delete</td>
     </tr>
 
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.FirstName @student.LastName</td>
+            <td>@student.Course</td>
+            <td>@student.AdmissionDate</td>
+            <td>@student.Email</td>
+            <td>@student.GPA</td>
+            <td><a asp-action="ShowDetail" asp-route-id="@student.Id" class="btn btn-primary">ShowDetails</a></td>>
+            <td><a asp-action="UpdateStudent" asp-route-id="@student.Id" class="btn btn-info">Update</a></td>>
+            <td><a asp-action="DeleteStudent" asp-route-id="@student.Id" class="btn btn-danger">Delete</a></td>>
 
-
+        </tr>
+    }
 </table>
